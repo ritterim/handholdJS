@@ -1,0 +1,120 @@
+@use './modal';
+
+.handhold {
+  --hh-current-element-top: 0;
+  --hh-current-element-left: 0;
+  --hh-current-element-height: 0;
+  --hh-current-element-width: 0;
+  --hh-current-element-position: absolute;
+  --hh-current-element-zIndex: 0;
+
+  --hh-boundingbox-outline-width: 4px;
+  --hh-boundingbox-outline-style: dashed;
+  --hh-boundingbox-outline-color: black;
+  --hh-boundingbox-outline-offset: calc(
+    var(--hh-boundingbox-outline-width) * -1
+  );
+  --hh-boundingbox-height: 0;
+  --hh-boundingbox-width: 0;
+  --hh-boundingbox-top: 0;
+  --hh-boundingbox-left: 0;
+
+  --hh-modal-background-color: white;
+  --hh-modal-box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    100px 100px 80px rgba(0, 0, 0, 0.07);
+  --hh-modal-border: none;
+  --hh-modal-padding-top: 1rem;
+  --hh-modal-padding-right: 1rem;
+  --hh-modal-padding-bottom: 1rem;
+  --hh-modal-padding-left: 1rem;
+  --hh-modal-padding: var(--hh-modal-padding-top) var(--hh-modal-padding-left)
+    var(--hh-modal-padding-bottom) var(--hh-modal-padding-right);
+
+  --hh-modal-margin-top: 1rem;
+  --hh-modal-margin-right: 0;
+  --hh-modal-margin-bottom: 1rem;
+  --hh-modal-margin-left: 0;
+  --hh-modal-margin: var(--hh-modal-margin-top) var(--hh-modal-margin-left)
+    var(--hh-modal-margin-bottom) var(--hh-modal-margin-right);
+
+  --hh-modal-top: 0;
+  --hh-modal-left: 0;
+
+  --hh-transition-time: 0.6s;
+  --hh-transition-function: cubic-bezier(0.65, 0, 0.35, 1);
+  --hh-enter-animation: enter 0.2s ease forwards;
+
+  &-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    place-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    animation: enter 0.2s ease forwards;
+  }
+
+  &-bounding-box {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    outline-width: var(--hh-boundingbox-outline-width);
+    outline-style: var(--hh-boundingbox-outline-style);
+    outline-color: var(--hh-boundingbox-outline-color);
+    outline-offset: var(--hh-boundingbox-outline-offset);
+    height: var(--hh-boundingbox-height);
+    width: var(--hh-boundingbox-width);
+    transform: translate(var(--hh-boundingbox-left), var(--hh-boundingbox-top));
+    pointer-events: none;
+    z-index: 3;
+    padding: 0;
+    margin: 0;
+    will-change: transform;
+    @media (prefers-reduced-motion: no-preference) {
+      animation: enter 0.2s ease forwards;
+    }
+    > * {
+      position: relative;
+      margin: 0;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+  }
+
+  &-current {
+    position: absolute;
+    height: var(--hh-current-element-height);
+    width: var(--hh-current-element-width);
+    transform: translate(
+      var(--hh-current-element-left),
+      var(--hh-current-element-top)
+    );
+    z-index: 3;
+  }
+
+
+  &-next-button{
+    grid-area: next;
+  }
+  &-prev-button{
+    grid-area: prev;
+    
+  }
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+  }
+}
+
+

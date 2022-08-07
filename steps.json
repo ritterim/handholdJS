@@ -1,0 +1,29 @@
+{
+  "steps": [
+    {
+      "number": "1",
+      "title": "This is Step 1",
+      "content": "<img width='490px' height='330px' src='https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80' alt='mountain' /><p>This is the first step of this product tour!</p>"
+    },
+    {
+      "number": "2",
+      "title": "This is Step 2",
+      "content": "This is yet another step of the product tour!"
+    },
+    {
+      "number": "3",
+      "title": "This is Step 3",
+      "content": "The fitnessgram pacer test is a multistage aerobic capacity test that progressively gets more difficult as it continues."
+    },
+    {
+      "number": "4",
+      "title": "This is Step 4",
+      "content": "The fitnessgram pacer test is a multistage aerobic capacity test that progressively gets more difficult as it continues."
+    },
+    {
+      "number": "5",
+      "title": "This is Step 5",
+      "content": "The fitnessgram pacer test is a multistage aerobic capacity test that progressively gets more difficult as it continues."
+    }
+  ]
+}
