@@ -1,20 +1,20 @@
 {
   "config": {
-    "nextBtn": {
-      "classList": ["button"]
-    },
-    "prevBtn": {
-      "classList": ["button"]
-    },
-    "finishBtn": {
-      "classList": ["button", "button--orange", "text--white"]
-    },
     "boundingBox": {
       "style": {
         "backgroundColor": "white",
         "outlineStyle": "solid",
         "outlineColor": "var(--navy)"
       }
+    },
+    "finishBtn": {
+      "classList": ["button", "button--orange", "text--white"]
+    },
+    "nextBtn": {
+      "classList": ["button"]
+    },
+    "prevBtn": {
+      "classList": ["button"]
     }
   },
   "steps": [

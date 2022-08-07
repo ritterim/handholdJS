@@ -34,6 +34,10 @@ $modal-radius-var: "var(--modal-radius, #{$modal-radius})";
         var(--hh-transition-function);
       animation: enter 0.2s ease forwards;
     }
+    
+    &-title{
+      margin: 0;
+    }
   }
 
   &-modal-content {
@@ -46,7 +50,7 @@ $modal-radius-var: "var(--modal-radius, #{$modal-radius})";
       margin-block-end: #{$modal-gutter-var};
     }
 
-    > img {
+    img {
       width: 100%;
       height: 150px;
       aspect-ratio: 16/9;

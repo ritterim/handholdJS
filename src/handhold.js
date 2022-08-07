@@ -354,50 +354,54 @@ export default class Handhold {
     }).element;
     this.removeElements();
     document.body.classList.remove('handhold');
-    document.body.removeEventListener('keyup', this.setListeners);
+    document.body.removeEventListener('keyup', this.keyPressEvents());
 
     return;
   }
 
+  keyPressEvents(event) {
+    const key = event.keyCode;
+    switch (key) {
+      // Escape key to close
+      case 27:
+        const modal = document.querySelector('.handhold-modal');
+        if (modal && this._active) {
+          this.finishHandhold();
+        }
+        break;
+      // left arrow to go to previous step
+      case 37:
+        const prevBtn = document.querySelector('.handhold-prev-button');
+        if (prevBtn && this._active) this.prevStep();
+        break;
+      // right arrow to go to next step
+      case 39:
+        const nextBtn = document.querySelector('.handhold-next-button');
+        if (nextBtn && this._active) this.nextStep();
+        break;
+      default:
+        break;
+    }
+  }
+
   setListeners() {
     if (this._active) {
-      const keyPressEvents = (event) => {
-        const key = event.keyCode;
-        switch (key) {
-          // Escape key to close
-          case 27:
-            const modal = document.querySelector('.handhold-modal');
-            if (modal && this._active) {
-              this.finishHandhold();
-            }
-            break;
-          // left arrow to go to previous step
-          case 37:
-            const prevBtn = document.querySelector('.handhold-prev-button');
-            if (prevBtn && this._active) this.prevStep();
-            break;
-          // right arrow to go to next step
-          case 39:
-            const nextBtn = document.querySelector('.handhold-next-button');
-            if (nextBtn && this._active) this.nextStep();
-            break;
-          default:
-            console.warn('Unrecognized Key!');
-        }
-      };
-      document.body.addEventListener('keyup', (event) => keyPressEvents(event));
+      document.body.addEventListener('keyup', (event) => this.keyPressEvents(event));
     }
 
     return;
   }
 
-  // main initialization method
   init() {
-    return this._startBtn.addEventListener('click', () => {
-      if (this._active) return;
-      if (this._currentStepEl) {
-        this.startHandhold();
-      }
-    });
+    if (this._startBtn) {
+      return this._startBtn.addEventListener('click', () => {
+        if (this._active) return;
+        if (this._currentStepEl) {
+          this.startHandhold();
+        }
+      });
+    }
+
+    return;
   }
 }
