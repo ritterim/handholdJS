@@ -11,7 +11,7 @@ export default class Handhold {
     this._active = false;
     this._steps;
     this._config;
-    this._startBtn = document.querySelector('[data-step-start]');
+    this._startBtn = document.querySelector('[data-start-handhold]');
     this._stepEls;
     this._currentStep = 1;
     this._currentStepEl;
@@ -75,6 +75,7 @@ export default class Handhold {
 
       elements.forEach((element) => {
         const el = document.querySelector(element.class);
+        console.log(el);
         if (
           el &&
           this._config[element.type] &&
@@ -323,6 +324,8 @@ export default class Handhold {
       nextBtn.focus();
       prevBtn.remove();
     }
+
+    this.applyConfig();
 
     return;
   }
