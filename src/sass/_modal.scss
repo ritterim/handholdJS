@@ -55,20 +55,3 @@ $modal-radius-var: "var(--modal-radius, #{$modal-radius})";
     }
   }
 }
-.handhold-modal-actions {
-  width: 100%;
-  display: grid;
-  gap: 1rem;
-  grid-template-areas: "prev next";
-}
-.handhold-next-button,
-.handhold-finish-button {
-  grid-area: next;
-  width: fit-content;
-  justify-self: end;
-}
-.handhold-prev-button {
-  grid-area: prev;
-  width: fit-content;
-  justify-self: start;
-}

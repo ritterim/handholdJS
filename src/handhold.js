@@ -75,27 +75,15 @@ export default class Handhold {
 
       elements.forEach((element) => {
         const el = document.querySelector(element.class);
-        console.log(el);
-        if (
-          el &&
-          this._config[element.type] &&
-          this._config[element.type].style
-        ) {
+        if (el && this._config[element.type] && this._config[element.type].style) {
           const properties = Object.keys(this._config[element.type].style);
           properties.forEach((property) => {
             el.style[property] = this._config[element.type].style[property];
           });
         }
 
-        if (
-          el &&
-          this._config[element.type] &&
-          this._config[element.type].classList
-        ) {
-          el.classList = [
-            ...el.classList,
-            ...this._config[element.type].classList,
-          ].join(' ');
+        if (el && this._config[element.type] && this._config[element.type].classList) {
+          el.classList = [...el.classList, ...this._config[element.type].classList].join(' ');
         }
       });
     }
@@ -128,8 +116,7 @@ export default class Handhold {
 
   // Gets dimensions and location of the element inside the DOM
   getElementDimension() {
-    const { top, left, height, width } =
-      this._currentStepEl.getBoundingClientRect();
+    const { top, left, height, width } = this._currentStepEl.getBoundingClientRect();
     return {
       top,
       left,
@@ -143,7 +130,7 @@ export default class Handhold {
     overlay.classList.add('handhold-overlay');
 
     document.body.appendChild(overlay);
-    overlay.addEventListener('click', () => this.toggleHandhold());
+    overlay.addEventListener('click', () => this.finishHandhold());
 
     return;
   }
@@ -161,22 +148,10 @@ export default class Handhold {
     const boundingBox = document.createElement('div');
     boundingBox.classList.add('handhold-bounding-box');
 
-    boundingBox.style.setProperty(
-      '--hh-boundingbox-height',
-      `${dimensions.height}px`
-    );
-    boundingBox.style.setProperty(
-      '--hh-boundingbox-width',
-      `${dimensions.width}px`
-    );
-    boundingBox.style.setProperty(
-      '--hh-boundingbox-top',
-      `${dimensions.top}px`
-    );
-    boundingBox.style.setProperty(
-      '--hh-boundingbox-left',
-      `${dimensions.left}px`
-    );
+    boundingBox.style.setProperty('--hh-boundingbox-height', `${dimensions.height}px`);
+    boundingBox.style.setProperty('--hh-boundingbox-width', `${dimensions.width}px`);
+    boundingBox.style.setProperty('--hh-boundingbox-top', `${dimensions.top}px`);
+    boundingBox.style.setProperty('--hh-boundingbox-left', `${dimensions.left}px`);
 
     boundingBox.role = 'presentation';
 
@@ -188,22 +163,10 @@ export default class Handhold {
   updateBoundingBox() {
     const boundingBox = document.querySelector('.handhold-bounding-box');
     const dimensions = this.getElementDimension(this._currentStepEl);
-    boundingBox.style.setProperty(
-      '--hh-boundingbox-height',
-      `${dimensions.height}px`
-    );
-    boundingBox.style.setProperty(
-      '--hh-boundingbox-width',
-      `${dimensions.width}px`
-    );
-    boundingBox.style.setProperty(
-      '--hh-boundingbox-top',
-      `${dimensions.top}px`
-    );
-    boundingBox.style.setProperty(
-      '--hh-boundingbox-left',
-      `${dimensions.left}px`
-    );
+    boundingBox.style.setProperty('--hh-boundingbox-height', `${dimensions.height}px`);
+    boundingBox.style.setProperty('--hh-boundingbox-width', `${dimensions.width}px`);
+    boundingBox.style.setProperty('--hh-boundingbox-top', `${dimensions.top}px`);
+    boundingBox.style.setProperty('--hh-boundingbox-left', `${dimensions.left}px`);
     boundingBox.innerHTML = '';
     boundingBox.appendChild(this._currentStepEl.cloneNode(true));
 
@@ -211,24 +174,17 @@ export default class Handhold {
   }
 
   removeBoundingBox() {
-    return document
-      .querySelectorAll('.handhold-bounding-box')
-      .forEach((el) => el.remove());
+    return document.querySelectorAll('.handhold-bounding-box').forEach((el) => el.remove());
   }
 
   createModal() {
-    const step = this._mappedSteps.find(
-      (step) => step.number == this._currentStep
-    );
+    const step = this._mappedSteps.find((step) => step.number == this._currentStep);
     const modal = document.createElement('div');
     modal.classList.add('handhold-modal');
 
     const dimensions = this.getElementDimension(this._currentStepEl);
 
-    modal.style.setProperty(
-      '--hh-modal-top',
-      `${dimensions.height + dimensions.top}px`
-    );
+    modal.style.setProperty('--hh-modal-top', `${dimensions.height + dimensions.top}px`);
     modal.style.setProperty('--hh-modal-left', `${dimensions.left}px`);
 
     const modalTitle = document.createElement('h3');
@@ -252,9 +208,7 @@ export default class Handhold {
   }
 
   updateModal() {
-    const step = this._mappedSteps.find(
-      (step) => step.number == this._currentStep
-    );
+    const step = this._mappedSteps.find((step) => step.number == this._currentStep);
 
     const modal = document.querySelector('.handhold-modal');
     const modalTitle = document.querySelector('.handhold-modal-title');
@@ -263,10 +217,7 @@ export default class Handhold {
     if (this._currentStepEl) {
       const dimensions = this.getElementDimension(step);
 
-      modal.style.setProperty(
-        '--hh-modal-top',
-        `${dimensions.height + dimensions.top}px`
-      );
+      modal.style.setProperty('--hh-modal-top', `${dimensions.height + dimensions.top}px`);
       modal.style.setProperty('--hh-modal-left', `${dimensions.left}px`);
 
       modalTitle.innerText = step.title;
@@ -318,7 +269,7 @@ export default class Handhold {
       finishBtn.innerText = 'Finish';
       modalActions.appendChild(finishBtn);
       finishBtn.focus();
-      finishBtn.addEventListener('click', () => this.toggleHandhold());
+      finishBtn.addEventListener('click', () => this.finishHandhold());
     }
     if (!prevStep) {
       nextBtn.focus();
@@ -331,17 +282,11 @@ export default class Handhold {
   }
 
   removeModal() {
-    return document
-      .querySelectorAll('.handhold-modal')
-      .forEach((el) => el.remove());
+    return document.querySelectorAll('.handhold-modal').forEach((el) => el.remove());
   }
 
   createElements() {
-    if (
-      this._config &&
-      this._config.overlay &&
-      this._config.overlay.hasOwnProperty('dimBackground')
-    ) {
+    if (this._config && this._config.overlay && this._config.overlay.hasOwnProperty('dimBackground')) {
       this._config.overlay.dimBackground ? this.createOverlay() : null;
     } else {
       this.createOverlay();
@@ -392,75 +337,67 @@ export default class Handhold {
     return;
   }
 
-  toggleHandhold() {
-    this._active = !this._active;
-    // this.setListeners();
+  startHandhold() {
+    this._active = true;
+    document.body.classList.add('handhold');
+    this.createElements();
+    this.setListeners();
 
-    if (this._active) {
-      document.body.classList.add('handhold');
-      this.createElements();
-    } else {
-      this._currentStep = 1;
-      this._currentStepEl = this._mappedSteps.find((step) => {
-        return parseInt(step.number) == this._currentStep;
-      }).element;
-      this.removeElements();
-      document.body.classList.remove('handhold');
-    }
+    return;
+  }
+
+  finishHandhold() {
+    this._active = false;
+    this._currentStep = 1;
+    this._currentStepEl = this._mappedSteps.find((step) => {
+      return parseInt(step.number) == this._currentStep;
+    }).element;
+    this.removeElements();
+    document.body.classList.remove('handhold');
+    document.body.removeEventListener('keyup', this.setListeners);
 
     return;
   }
 
   setListeners() {
-    const keyPressEvents = (event) => {
-      const key = event.keyCode;
-      switch (key) {
-        // Escape key to close
-        case 27:
-          const modal = document.querySelector('.handhold-modal');
-          if (modal) {
-            this.toggleHandhold();
-            clearlistener();
-          }
-          break;
-        // left arrow to go to previous step
-        case 37:
-          const prevBtn = document.querySelector('.handhold-prev-button');
-          if (prevBtn) this.prevStep();
-          break;
-
-        // right arrow to go to next step
-        case 39:
-          const nextBtn = document.querySelector('.handhold-next-button');
-          if (nextBtn) this.nextStep();
-          break;
-        default:
-          console.warn('Unrecognized Key!');
-      }
-    };
-
-    const clearlistener = () => {
-      document.body.removeEventListener('keyup', keyPressEvents);
-    };
-
-    document.body.addEventListener('keyup', (event) => keyPressEvents(event));
-
-    return;
-  }
-
-  startHandhold() {
-    return this._startBtn.addEventListener('click', () => {
-      if (this._active) return;
-      if (this._currentStepEl) {
-        this.toggleHandhold();
-      }
-    });
+    if (this._active) {
+      const keyPressEvents = (event) => {
+        const key = event.keyCode;
+        switch (key) {
+          // Escape key to close
+          case 27:
+            const modal = document.querySelector('.handhold-modal');
+            if (modal && this._active) {
+              this.finishHandhold();
+            }
+            break;
+          // left arrow to go to previous step
+          case 37:
+            const prevBtn = document.querySelector('.handhold-prev-button');
+            if (prevBtn && this._active) this.prevStep();
+            break;
+          // right arrow to go to next step
+          case 39:
+            const nextBtn = document.querySelector('.handhold-next-button');
+            if (nextBtn && this._active) this.nextStep();
+            break;
+          default:
+            console.warn('Unrecognized Key!');
+        }
+      };
+      document.body.addEventListener('keyup', (event) => keyPressEvents(event));
+    }
 
     return;
   }
 
   // main initialization method
   init() {
-    return this.startHandhold();
+    return this._startBtn.addEventListener('click', () => {
+      if (this._active) return;
+      if (this._currentStepEl) {
+        this.startHandhold();
+      }
+    });
   }
 }

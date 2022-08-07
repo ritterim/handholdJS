@@ -1,0 +1,14 @@
+.handhold {
+  &-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    place-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    animation: enter 0.2s ease forwards;
+  }
+}
