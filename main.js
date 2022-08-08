@@ -1,4 +1,3 @@
-
 import Handhold from './src/handhold';
 import handholdData from './steps.json';
 

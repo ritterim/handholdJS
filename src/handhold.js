@@ -3,6 +3,8 @@ import './sass/handhold.scss';
 /* 
   TODO - Setup listeners *properly* for esc key close, arrow key navigation
   TODO - Detect if modal near edges and adjust location to prevent overflow
+  TODO - Scroll to highlighted UI element
+  TODO - Make more responsive
   TODO - Implement accessibility features further
 */
 
@@ -75,15 +77,26 @@ export default class Handhold {
 
       elements.forEach((element) => {
         const el = document.querySelector(element.class);
-        if (el && this._config[element.type] && this._config[element.type].style) {
+        if (
+          el &&
+          this._config[element.type] &&
+          this._config[element.type].style
+        ) {
           const properties = Object.keys(this._config[element.type].style);
           properties.forEach((property) => {
             el.style[property] = this._config[element.type].style[property];
           });
         }
 
-        if (el && this._config[element.type] && this._config[element.type].classList) {
-          el.classList = [...el.classList, ...this._config[element.type].classList].join(' ');
+        if (
+          el &&
+          this._config[element.type] &&
+          this._config[element.type].classList
+        ) {
+          el.classList = [
+            ...el.classList,
+            ...this._config[element.type].classList,
+          ].join(' ');
         }
       });
     }
@@ -116,7 +129,8 @@ export default class Handhold {
 
   // Gets dimensions and location of the element inside the DOM
   getElementDimension() {
-    const { top, left, height, width } = this._currentStepEl.getBoundingClientRect();
+    const { top, left, height, width } =
+      this._currentStepEl.getBoundingClientRect();
     return {
       top,
       left,
@@ -128,6 +142,7 @@ export default class Handhold {
   createOverlay() {
     const overlay = document.createElement('div');
     overlay.classList.add('handhold-overlay');
+    overlay.ariaHidden = true;
 
     document.body.appendChild(overlay);
     overlay.addEventListener('click', () => this.finishHandhold());
@@ -148,10 +163,22 @@ export default class Handhold {
     const boundingBox = document.createElement('div');
     boundingBox.classList.add('handhold-bounding-box');
 
-    boundingBox.style.setProperty('--hh-boundingbox-height', `${dimensions.height}px`);
-    boundingBox.style.setProperty('--hh-boundingbox-width', `${dimensions.width}px`);
-    boundingBox.style.setProperty('--hh-boundingbox-top', `${dimensions.top}px`);
-    boundingBox.style.setProperty('--hh-boundingbox-left', `${dimensions.left}px`);
+    boundingBox.style.setProperty(
+      '--hh-boundingbox-height',
+      `${dimensions.height}px`
+    );
+    boundingBox.style.setProperty(
+      '--hh-boundingbox-width',
+      `${dimensions.width}px`
+    );
+    boundingBox.style.setProperty(
+      '--hh-boundingbox-top',
+      `${dimensions.top}px`
+    );
+    boundingBox.style.setProperty(
+      '--hh-boundingbox-left',
+      `${dimensions.left}px`
+    );
 
     boundingBox.role = 'presentation';
 
@@ -163,10 +190,22 @@ export default class Handhold {
   updateBoundingBox() {
     const boundingBox = document.querySelector('.handhold-bounding-box');
     const dimensions = this.getElementDimension(this._currentStepEl);
-    boundingBox.style.setProperty('--hh-boundingbox-height', `${dimensions.height}px`);
-    boundingBox.style.setProperty('--hh-boundingbox-width', `${dimensions.width}px`);
-    boundingBox.style.setProperty('--hh-boundingbox-top', `${dimensions.top}px`);
-    boundingBox.style.setProperty('--hh-boundingbox-left', `${dimensions.left}px`);
+    boundingBox.style.setProperty(
+      '--hh-boundingbox-height',
+      `${dimensions.height}px`
+    );
+    boundingBox.style.setProperty(
+      '--hh-boundingbox-width',
+      `${dimensions.width}px`
+    );
+    boundingBox.style.setProperty(
+      '--hh-boundingbox-top',
+      `${dimensions.top}px`
+    );
+    boundingBox.style.setProperty(
+      '--hh-boundingbox-left',
+      `${dimensions.left}px`
+    );
     boundingBox.innerHTML = '';
     boundingBox.appendChild(this._currentStepEl.cloneNode(true));
 
@@ -174,17 +213,24 @@ export default class Handhold {
   }
 
   removeBoundingBox() {
-    return document.querySelectorAll('.handhold-bounding-box').forEach((el) => el.remove());
+    return document
+      .querySelectorAll('.handhold-bounding-box')
+      .forEach((el) => el.remove());
   }
 
   createModal() {
-    const step = this._mappedSteps.find((step) => step.number == this._currentStep);
+    const step = this._mappedSteps.find(
+      (step) => step.number == this._currentStep
+    );
     const modal = document.createElement('div');
     modal.classList.add('handhold-modal');
 
     const dimensions = this.getElementDimension(this._currentStepEl);
 
-    modal.style.setProperty('--hh-modal-top', `${dimensions.height + dimensions.top}px`);
+    modal.style.setProperty(
+      '--hh-modal-top',
+      `${dimensions.height + dimensions.top}px`
+    );
     modal.style.setProperty('--hh-modal-left', `${dimensions.left}px`);
 
     const modalTitle = document.createElement('h3');
@@ -208,7 +254,9 @@ export default class Handhold {
   }
 
   updateModal() {
-    const step = this._mappedSteps.find((step) => step.number == this._currentStep);
+    const step = this._mappedSteps.find(
+      (step) => step.number == this._currentStep
+    );
 
     const modal = document.querySelector('.handhold-modal');
     const modalTitle = document.querySelector('.handhold-modal-title');
@@ -217,7 +265,10 @@ export default class Handhold {
     if (this._currentStepEl) {
       const dimensions = this.getElementDimension(step);
 
-      modal.style.setProperty('--hh-modal-top', `${dimensions.height + dimensions.top}px`);
+      modal.style.setProperty(
+        '--hh-modal-top',
+        `${dimensions.height + dimensions.top}px`
+      );
       modal.style.setProperty('--hh-modal-left', `${dimensions.left}px`);
 
       modalTitle.innerText = step.title;
@@ -225,6 +276,8 @@ export default class Handhold {
     }
 
     this.updateButtons();
+
+    return;
   }
 
   updateButtons() {
@@ -282,11 +335,17 @@ export default class Handhold {
   }
 
   removeModal() {
-    return document.querySelectorAll('.handhold-modal').forEach((el) => el.remove());
+    return document
+      .querySelectorAll('.handhold-modal')
+      .forEach((el) => el.remove());
   }
 
   createElements() {
-    if (this._config && this._config.overlay && this._config.overlay.hasOwnProperty('dimBackground')) {
+    if (
+      this._config &&
+      this._config.overlay &&
+      this._config.overlay.hasOwnProperty('dimBackground')
+    ) {
       this._config.overlay.dimBackground ? this.createOverlay() : null;
     } else {
       this.createOverlay();
@@ -386,7 +445,9 @@ export default class Handhold {
 
   setListeners() {
     if (this._active) {
-      document.body.addEventListener('keyup', (event) => this.keyPressEvents(event));
+      document.body.addEventListener('keyup', (event) =>
+        this.keyPressEvents(event)
+      );
     }
 
     return;
