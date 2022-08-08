@@ -1,0 +1,37 @@
+{
+  "config": {
+    "boundingBox": {
+      "style": {
+        "backgroundColor": "white",
+        "outlineStyle": "solid",
+        "outlineColor": "var(--navy)"
+      }
+    },
+    "finishBtn": {
+      "classList": ["button", "button--orange", "text--white"]
+    },
+    "nextBtn": {
+      "classList": ["button"]
+    },
+    "prevBtn": {
+      "classList": ["button"]
+    }
+  },
+  "steps": [
+    {
+      "number": "1",
+      "title": "Your Daily Headlines",
+      "content": "This is where all the latest news will appear."
+    },
+    {
+      "number": "2",
+      "title": "Daily Graph",
+      "content": "The daily graph will display relevant information."
+    },
+    {
+      "number": "3",
+      "title": "Another Graph",
+      "content": "This will show even more relevant information"
+    }
+  ]
+}

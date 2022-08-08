@@ -1,0 +1,19 @@
+.handhold {
+  &-modal-actions {
+    width: 100%;
+    display: grid;
+    gap: 1rem;
+    grid-template-areas: 'prev next';
+  }
+  &-next-button,
+  &-finish-button {
+    grid-area: next;
+    width: fit-content;
+    justify-self: end;
+  }
+  &-prev-button {
+    grid-area: prev;
+    width: fit-content;
+    justify-self: start;
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "name": "@ritterim/handholdjs",
+  "description": "A configurable JavaScript hand held walk-through for user interfaces.",
+  "version": "0.1.0",
+  "main": "dist/handhold.umd.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ritterim/handholdJS.git"
+  },
+  "author": "Ritter Insurance Marketing (https://rimdev.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ritterim/handholdJS/issues"
+  },
+  "keywords": [
+    "walthrough",
+    "ui walkthrough",
+    "product tour",
+    "ui tour"
+  ],
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "maintained node versions"
+  ],
+  "homepage": "https://github.com/ritterim/handholdJS#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.8",
+    "postcss": "^8.4.16",
+    "postcss-cli": "^10.0.0",
+    "sass": "^1.54.3",
+    "vite": "^3.0.0",
+    "vite-plugin-banner": "^0.3.0"
+  }
+}

@@ -1,0 +1,9 @@
+.handhold {
+  &-current {
+    position: absolute;
+    height: var(--hh-current-element-height);
+    width: var(--hh-current-element-width);
+    transform: translate(var(--hh-current-element-left), var(--hh-current-element-top));
+    z-index: 3;
+  }
+}
