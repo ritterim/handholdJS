@@ -104,7 +104,6 @@ handhold.json:
   "config": {
     "boundingBox": {
       "style": {
-        "backgroundColor": "white",
         "outlineStyle": "solid",
         "outlineColor": "var(--navy)"
       }
