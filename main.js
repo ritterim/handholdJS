@@ -1,3 +1,4 @@
+import './src/sass/handhold.scss';
 import Handhold from './src/handhold';
 import handholdData from './steps.json';
 

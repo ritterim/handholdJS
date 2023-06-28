@@ -1,9 +1,6 @@
-import './sass/handhold.scss';
-
 /* 
   TODO - Setup listeners *properly* for esc key close, arrow key navigation
   TODO - Scroll to highlighted UI element
-  TODO - Make more responsive
   TODO - Implement accessibility features further
 */
 
@@ -17,6 +14,7 @@ export default class Handhold {
     this._startBtn = document.querySelector('[data-start-handhold]');
     this._stepElements;
     this._steps;
+    this._resizeObserver;
     this._root;
   }
 
@@ -220,10 +218,11 @@ export default class Handhold {
     if (this._currentStepElement) {
       const dimensions = this.getElementDimension(step.element);
       const modalDimensions = this.getElementDimension(modal);
-      const bodyDimensions = this.getElementDimension(this._root);
-      
-      if (dimensions.left + modalDimensions.width > bodyDimensions.width) {
-        const offset = bodyDimensions.width - (dimensions.left + modalDimensions.width + 16);
+      const rootDimensions = this.getElementDimension(this._root);
+
+      if (dimensions.left + modalDimensions.width > rootDimensions.width) {
+        const offset =
+          rootDimensions.width - (dimensions.left + modalDimensions.width + 16);
         dimensions.left += offset;
       }
 
@@ -376,7 +375,7 @@ export default class Handhold {
     ).element;
     this.removeElements();
     this._root.classList.remove('handhold');
-    this._root.removeEventListener('keyup', this.keyPressEvents());
+    this._resizeObserver.unobserve(this._root);
 
     return;
   }
@@ -416,6 +415,15 @@ export default class Handhold {
         this.keyPressEvents(event)
       );
     }
+
+    this._resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        this.updateBoundingBox();
+        this.updateModal();
+      }
+    });
+
+    this._resizeObserver.observe(this._root);
 
     return;
   }
