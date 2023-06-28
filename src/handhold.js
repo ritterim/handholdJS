@@ -1,7 +1,12 @@
 /* 
   TODO - Setup listeners *properly* for esc key close, arrow key navigation
-  TODO - Scroll to highlighted UI element
+       - Esc key working properly
+       - Need to clear keydown event listener once handhold is finished
+  TODO - Fix scrolling 
+       - Scroll to highlighted UI elements
+       - Gets sorta weird after scrolling
   TODO - Implement accessibility features further
+       - need to do accessibility testing further to identify issues
 */
 
 export default class Handhold {
@@ -414,16 +419,19 @@ export default class Handhold {
       this._root.addEventListener('keydown', (event) =>
         this.keyPressEvents(event)
       );
+      
+      // window.addEventListener('scroll', (event) => {
+      //   this.updateElements();
+      // });
+
+      this._resizeObserver = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          this.updateElements();
+        }
+      });
+
+      this._resizeObserver.observe(this._root);
     }
-
-    this._resizeObserver = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        this.updateBoundingBox();
-        this.updateModal();
-      }
-    });
-
-    this._resizeObserver.observe(this._root);
 
     return;
   }
