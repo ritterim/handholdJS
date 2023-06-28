@@ -2,7 +2,6 @@ import './sass/handhold.scss';
 
 /* 
   TODO - Setup listeners *properly* for esc key close, arrow key navigation
-  TODO - Detect if modal near edges and adjust location to prevent overflow
   TODO - Scroll to highlighted UI element
   TODO - Make more responsive
   TODO - Implement accessibility features further
@@ -120,9 +119,8 @@ export default class Handhold {
   }
 
   // Gets dimensions and location of the element inside the DOM
-  getElementDimension() {
-    const { top, left, height, width } =
-      this._currentStepElement.getBoundingClientRect();
+  getElementDimension(element) {
+    const { top, left, height, width } = element.getBoundingClientRect();
     return {
       top,
       left,
@@ -173,17 +171,16 @@ export default class Handhold {
     const step = this._mappedSteps.find(
       (step) => step.number == this._currentStep
     );
-    const modal = Object.assign(document.createElement('dialog'), {
-      classList: ['handhold-modal'].join(' '),
-    });
 
     const dimensions = this.getElementDimension(this._currentStepElement);
 
-    modal.style.setProperty(
-      '--hh-modal-top',
-      `${dimensions.height + dimensions.top}px`
-    );
-    modal.style.setProperty('--hh-modal-left', `${dimensions.left}px`);
+    const modal = Object.assign(document.createElement('dialog'), {
+      classList: ['handhold-modal'].join(' '),
+      style: [
+        `--hh-modal-top: ${dimensions.height + dimensions.top}px`,
+        `--hh-modal-left: ${dimensions.left}px`,
+      ].join(';'),
+    });
 
     const modalTitle = Object.assign(document.createElement('h3'), {
       classList: ['handhold-modal-title'].join(' '),
@@ -221,13 +218,19 @@ export default class Handhold {
     const modalContent = modal.querySelector('.handhold-modal-content');
 
     if (this._currentStepElement) {
-      const dimensions = this.getElementDimension(step);
+      const dimensions = this.getElementDimension(step.element);
+      const modalDimensions = this.getElementDimension(modal);
+      const bodyDimensions = this.getElementDimension(this._root);
+      
+      if (dimensions.left + modalDimensions.width > bodyDimensions.width) {
+        const offset = bodyDimensions.width - (dimensions.left + modalDimensions.width + 16);
+        dimensions.left += offset;
+      }
 
-      modal.style.setProperty(
-        '--hh-modal-top',
-        `${dimensions.height + dimensions.top}px`
-      );
-      modal.style.setProperty('--hh-modal-left', `${dimensions.left}px`);
+      modal.style = [
+        `--hh-modal-top: ${dimensions.height + dimensions.top}px`,
+        `--hh-modal-left: ${dimensions.left}px`,
+      ].join(';');
 
       modalTitle.innerText = step.title;
       modalContent.innerHTML = step.content;
