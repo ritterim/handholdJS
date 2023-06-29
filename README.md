@@ -32,10 +32,10 @@ const handhold = new Handhold();
 ## Creating steps
 Create either a JSON file or JavaScript object and include the steps in an array:
 
-handhold.json:
+handhold-config.json:
 ```JSON
-handhold: {
-  steps: [
+{
+  "steps": [
     {
       "number": "1",
       "title": "Step 1",
@@ -58,9 +58,9 @@ handhold: {
 ## Customization
 Inside your created JSON or JavaScript object, create a `config` property to include directions for customization:
 
-handhold.json:
+handhold-config.json:
 ```JSON
-handhold: {
+{
   "config": {
     // Config...
   },
@@ -72,33 +72,18 @@ handhold: {
 
 You can customize the following Handhold elements:
 - `boundingBox` - Box that wraps around the highlighted element.
-  - `classList` - Array of CSS classes.
-  - `style` - Object containing any CSS properties you want 
-  to apply to the element.
-- `overlay` - Backdrop used to emphasize the highlighted element.
-  - `dimBackground` - Boolean value to determine whether it should display the dimmed out background.
-  - `classList` - Array of CSS classes.
-  - `style` - Object containing any CSS properties you want 
-  to apply to the element.
 - `modal` - Modal element where steps will be displayed.
-  - `classList` - Array of CSS classes.
-  - `style` - Object containing any CSS properties you want 
-  to apply to the element.
-- `nextBtn` - Button that moves to the next step.
-  - `classList` - Array of CSS classes.
-  - `style` - Object containing any CSS properties you want 
-  to apply to the element.
-- `prevBtn` - Button that moves to the next step.
-  - `classList` - Array of CSS classes.
-  - `style` - Object containing any CSS properties you want 
-  to apply to the element.
+- `nextButton` - Button that moves to the next step.
+- `previousButton` - Button that moves to the next step.
 - `finishBtn` - Button that moves to the next step.
-  - `classList` - Array of CSS classes.
-  - `style` - Object containing any CSS properties you want 
-  to apply to the element.
+
+Each Handhold element can be customized using the following properties:
+
+- `classList` - An array of classes to be applied to the element.
+- `style` - An object containing CSS properties and values to apply to the element.
 
 ### Full Example
-handhold.json:
+handhold-config.json:
 ```JSON
 {
   "config": {
@@ -111,10 +96,10 @@ handhold.json:
     "finishBtn": {
       "classList": ["button", "button--orange", "text--white"]
     },
-    "nextBtn": {
+    "nextButton": {
       "classList": ["button"]
     },
-    "prevBtn": {
+    "previousButton": {
       "classList": ["button"]
     }
   },
@@ -145,10 +130,10 @@ main.js:
 ```JavaScript
 import Handhold from '@ritterim/handholdJS';
 import '../path/to/node_modules/@ritterim/handholdJS/dist/style.css';
-import data from '../path/to/handhold.json'
+import handholdConfig from '../path/to/handhold-config.json'
 
 const handhold = new Handhold();
-handhold.setup(data);
+handhold.setup(handholdConfig);
 ```
 
 ## Initiate Handhold
@@ -158,10 +143,10 @@ main.js:
 ```JavaScript
 import Handhold from '@ritterim/handholdJS';
 import '../path/to/node_modules/@ritterim/handholdJS/dist/style.css';
-import data from '../path/to/handhold.json'
+import handholdConfig from '../path/to/handhold-config.json'
 
 const handhold = new Handhold();
-handhold.setup(data);
+handhold.setup(handholdConfig);
 handhold.init();
 ```
 
@@ -170,7 +155,7 @@ Inside your HTML you must include a clickable "start" element and pair the steps
 
 On the start element, apply the `data-handhold-start` data attribute.
 
-On related HTML elements add the `data-step=""` attribute and include the matching step number you want to display.
+On related HTML elements add the `data-step` attribute and give it the value of the corresponding step number you want to display.
 
 index.html:
 ```HTML

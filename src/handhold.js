@@ -1,3 +1,5 @@
+import './sass/handhold.scss';
+
 /* 
   TODO - Setup listeners *properly* for esc key close, arrow key navigation
        - Esc key working properly
@@ -419,7 +421,7 @@ export default class Handhold {
       this._root.addEventListener('keydown', (event) =>
         this.keyPressEvents(event)
       );
-      
+
       // window.addEventListener('scroll', (event) => {
       //   this.updateElements();
       // });

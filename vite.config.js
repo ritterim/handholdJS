@@ -19,6 +19,7 @@ const puiHeader = [
 export default defineConfig({
   plugins: [banner(puiHeader)],
   build: {
+    minify: true,
     lib: {
       entry: resolve(__dirname, '/src/handhold.js'),
       name: 'HandholdJS',
