@@ -1,16 +1,5 @@
 import './sass/handhold.scss';
 
-/* 
-  TODO - Setup listeners *properly* for esc key close, arrow key navigation
-       - Esc key working properly
-       - Need to clear keydown event listener once handhold is finished
-  TODO - Fix scrolling 
-       - Scroll to highlighted UI elements
-       - Gets sorta weird after scrolling
-  TODO - Implement accessibility features further
-       - need to do accessibility testing further to identify issues
-*/
-
 export default class Handhold {
   constructor() {
     this._active = false;
