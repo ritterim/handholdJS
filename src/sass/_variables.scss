@@ -3,33 +3,39 @@
   --hh-current-element-left: 0;
   --hh-current-element-height: 0;
   --hh-current-element-width: 0;
-  --hh-current-element-position: absolute;
-  --hh-current-element-zIndex: 0;
 
   --hh-boundingbox-outline-width: 4px;
   --hh-boundingbox-outline-style: dashed;
   --hh-boundingbox-outline-color: black;
-  --hh-boundingbox-outline-offset: calc(var(--hh-boundingbox-outline-width) * -1);
+  --hh-boundingbox-outline-offset: calc(
+    var(--hh-boundingbox-outline-width) * -1
+  );
   --hh-boundingbox-height: 0;
   --hh-boundingbox-width: 0;
   --hh-boundingbox-top: 0;
   --hh-boundingbox-left: 0;
 
   --hh-modal-background-color: white;
-  --hh-modal-box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02), 6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028), 12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
-    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042), 41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05), 100px 100px 80px rgba(0, 0, 0, 0.07);
-  --hh-modal-border: none;
+  --hh-modal-box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    100px 100px 80px rgba(0, 0, 0, 0.07);
+
   --hh-modal-padding-top: 1rem;
   --hh-modal-padding-right: 1rem;
   --hh-modal-padding-bottom: 1rem;
   --hh-modal-padding-left: 1rem;
-  --hh-modal-padding: var(--hh-modal-padding-top) var(--hh-modal-padding-left) var(--hh-modal-padding-bottom) var(--hh-modal-padding-right);
+  --hh-modal-padding: var(--hh-modal-padding-top) var(--hh-modal-padding-left)
+    var(--hh-modal-padding-bottom) var(--hh-modal-padding-right);
 
   --hh-modal-margin-top: 1rem;
   --hh-modal-margin-right: 0;
   --hh-modal-margin-bottom: 1rem;
   --hh-modal-margin-left: 0;
-  --hh-modal-margin: var(--hh-modal-margin-top) var(--hh-modal-margin-left) var(--hh-modal-margin-bottom) var(--hh-modal-margin-right);
+  --hh-modal-margin: var(--hh-modal-margin-top) var(--hh-modal-margin-left)
+    var(--hh-modal-margin-bottom) var(--hh-modal-margin-right);
 
   --hh-modal-top: 0;
   --hh-modal-left: 0;

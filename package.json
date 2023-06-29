@@ -30,11 +30,11 @@
   ],
   "homepage": "https://github.com/ritterim/handholdJS#readme",
   "devDependencies": {
-    "autoprefixer": "^10.4.8",
-    "postcss": "^8.4.16",
-    "postcss-cli": "^10.0.0",
-    "sass": "^1.54.3",
-    "vite": "^3.0.0",
-    "vite-plugin-banner": "^0.3.0"
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "postcss-cli": "^10.1.0",
+    "sass": "^1.63.6",
+    "vite": "^4.3.9",
+    "vite-plugin-banner": "^0.7.0"
   }
 }

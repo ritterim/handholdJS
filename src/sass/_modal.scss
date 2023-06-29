@@ -27,21 +27,20 @@ $modal-radius-var: "var(--modal-radius, #{$modal-radius})";
     padding: var(--hh-modal-padding);
     box-shadow: var(--hh-modal-box-shadow);
     transform: translate(var(--hh-modal-left), var(--hh-modal-top));
-    z-index: 3;
-    will-change: transform;
+
     @media (prefers-reduced-motion: no-preference) {
       transition: transform var(--hh-transition-time)
         var(--hh-transition-function);
-      animation: enter 0.2s ease forwards;
+      animation: var(--hh-enter-animation);
     }
-    
-    &-title{
+
+    &-title {
       margin: 0;
     }
   }
 
   &-modal-content {
-    width:100%;
+    width: 100%;
     > :first-child:not(img) {
       margin-block-start: #{$modal-gutter-var};
     }
