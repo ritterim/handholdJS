@@ -10,7 +10,7 @@ export default class Handhold {
     this._startBtn = document.querySelector('[data-start-handhold]');
     this._stepElements;
     this._steps;
-    this._resizeObserver;
+    this._listeners;
     this._root;
   }
 
@@ -370,13 +370,13 @@ export default class Handhold {
       (step) => parseInt(step.number) == this._currentStep
     ).element;
     this.removeElements();
+    this.clearListeners();
     this._root.classList.remove('handhold');
-    this._resizeObserver.unobserve(this._root);
-
     return;
   }
 
   keyPressEvents(event) {
+    console.log('testing...')
     if (event && event.keyCode) {
       const key = event.keyCode;
       switch (key) {
@@ -403,28 +403,30 @@ export default class Handhold {
           break;
       }
     }
+
+    return;
   }
 
   setListeners() {
     if (this._active) {
-      this._root.addEventListener('keydown', (event) =>
-        this.keyPressEvents(event)
-      );
+      this._listeners = {
+        keyboard: this._root.addEventListener('keydown', this.keyPressEvents),
+        resize: new ResizeObserver((entries) => {
+          for (const entry of entries) {
+            this.updateElements();
+          }
+        }),
+      };
 
-      // window.addEventListener('scroll', (event) => {
-      //   this.updateElements();
-      // });
-
-      this._resizeObserver = new ResizeObserver((entries) => {
-        for (const entry of entries) {
-          this.updateElements();
-        }
-      });
-
-      this._resizeObserver.observe(this._root);
+      this._listeners.resize.observe(this._root);
     }
 
     return;
+  }
+
+  clearListeners() {
+    this._listeners.resize.unobserve(this._root);
+    this._root.removeEventListener('keydown', this.keyPressEvents);
   }
 
   init() {

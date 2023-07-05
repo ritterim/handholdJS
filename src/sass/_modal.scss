@@ -33,7 +33,9 @@ $modal-radius-var: "var(--modal-radius, #{$modal-radius})";
         var(--hh-transition-function);
       animation: var(--hh-enter-animation);
     }
-
+    &::backdrop{
+      background: transparent;
+    }
     &-title {
       margin: 0;
     }
