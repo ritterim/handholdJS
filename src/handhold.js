@@ -376,7 +376,6 @@ export default class Handhold {
   }
 
   keyPressEvents(event) {
-    console.log('testing...')
     if (event && event.keyCode) {
       const key = event.keyCode;
       switch (key) {
@@ -409,8 +408,11 @@ export default class Handhold {
 
   setListeners() {
     if (this._active) {
+      const root = this;
       this._listeners = {
-        keyboard: this._root.addEventListener('keydown', this.keyPressEvents),
+        keyboard: function () {
+          root.keyPressEvents(event);
+        },
         resize: new ResizeObserver((entries) => {
           for (const entry of entries) {
             this.updateElements();
@@ -418,6 +420,7 @@ export default class Handhold {
         }),
       };
 
+      this._root.addEventListener('keydown', this._listeners.keyboard);
       this._listeners.resize.observe(this._root);
     }
 
@@ -426,7 +429,7 @@ export default class Handhold {
 
   clearListeners() {
     this._listeners.resize.unobserve(this._root);
-    this._root.removeEventListener('keydown', this.keyPressEvents);
+    this._root.removeEventListener('keydown', this._listeners.keyboard);
   }
 
   init() {
