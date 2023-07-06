@@ -160,6 +160,10 @@ export default class Handhold {
       .forEach((el) => el.remove());
   }
 
+  getBoundingBox() {
+    return document.querySelector('.handhold-bounding-box');
+  }
+
   // Modal Methods
   createModal() {
     const step = this._mappedSteps.find(
@@ -339,6 +343,10 @@ export default class Handhold {
     return;
   }
 
+  scrollHandler() {
+    console.warn('scroll handler');
+  }
+
   prevStep() {
     this._currentStep--;
     this._currentStepElement = this._mappedSteps.find(
@@ -409,9 +417,13 @@ export default class Handhold {
   setListeners() {
     if (this._active) {
       const root = this;
+
       this._listeners = {
         keyboard: function () {
           root.keyPressEvents(event);
+        },
+        scroll: function () {
+          root.scrollHandler();
         },
         resize: new ResizeObserver((entries) => {
           for (const entry of entries) {
@@ -421,6 +433,7 @@ export default class Handhold {
       };
 
       this._root.addEventListener('keydown', this._listeners.keyboard);
+      window.addEventListener('scroll', this._listeners.scroll);
       this._listeners.resize.observe(this._root);
     }
 
