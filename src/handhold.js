@@ -144,10 +144,11 @@ export default class Handhold {
     const boundingBox = document.querySelector('.handhold-bounding-box');
     boundingBox.innerHTML = '';
     const dimensions = this.getElementDimension(this._currentStepElement);
+    const currentStepPos = this._currentStepElement.offsetTop;
     boundingBox.style = [
       `--hh-boundingbox-height: ${dimensions.height}px`,
       `--hh-boundingbox-width: ${dimensions.width}px`,
-      `--hh-boundingbox-top: ${dimensions.top}px`,
+      `--hh-boundingbox-top: ${currentStepPos}px`,
       `--hh-boundingbox-left: ${dimensions.left}px`,
     ].join(';');
 
@@ -210,6 +211,7 @@ export default class Handhold {
     const modal = document.querySelector('.handhold-modal');
     const modalTitle = modal.querySelector('.handhold-modal-title');
     const modalContent = modal.querySelector('.handhold-modal-content');
+    const currentStepPos = this._currentStepElement.offsetTop;
 
     if (this._currentStepElement) {
       const dimensions = this.getElementDimension(step.element);
@@ -223,7 +225,7 @@ export default class Handhold {
       }
 
       modal.style = [
-        `--hh-modal-top: ${dimensions.height + dimensions.top}px`,
+        `--hh-modal-top: ${dimensions.height + currentStepPos}px`,
         `--hh-modal-left: ${dimensions.left}px`,
       ].join(';');
 
@@ -334,6 +336,8 @@ export default class Handhold {
       (step) => parseInt(step.number) == this._currentStep
     ).element;
 
+    this._currentStepElement.scrollIntoView({behavior: "smooth"});
+
     this.updateElements();
 
     return;
@@ -344,6 +348,8 @@ export default class Handhold {
     this._currentStepElement = this._mappedSteps.find(
       (step) => parseInt(step.number) == this._currentStep
     ).element;
+
+    this._currentStepElement.scrollIntoView({behavior: "smooth"});
 
     this.updateElements();
 
@@ -372,6 +378,7 @@ export default class Handhold {
     this.removeElements();
     this.clearListeners();
     this._root.classList.remove('handhold');
+    window.scrollTo({top: 0, left: 0, behavior: "smooth"});
     return;
   }
 
@@ -409,6 +416,7 @@ export default class Handhold {
   setListeners() {
     if (this._active) {
       const root = this;
+
       this._listeners = {
         keyboard: function () {
           root.keyPressEvents(event);
