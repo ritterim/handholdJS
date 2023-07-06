@@ -429,7 +429,6 @@ export default class Handhold {
       };
 
       this._root.addEventListener('keydown', this._listeners.keyboard);
-      window.addEventListener('scroll', this._listeners.scroll);
       this._listeners.resize.observe(this._root);
     }
 
