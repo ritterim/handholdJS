@@ -161,10 +161,6 @@ export default class Handhold {
       .forEach((el) => el.remove());
   }
 
-  getBoundingBox() {
-    return document.querySelector('.handhold-bounding-box');
-  }
-
   // Modal Methods
   createModal() {
     const step = this._mappedSteps.find(
