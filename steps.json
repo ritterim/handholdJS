@@ -1,21 +1,4 @@
 {
-  "config": {
-    "boundingBox": {
-      "style": {
-        "outlineStyle": "solid",
-        "outlineColor": "var(--navy)"
-      }
-    },
-    "finishButton": {
-      "classList": ["button", "button--orange", "text--white"]
-    },
-    "nextButton": {
-      "classList": ["button"]
-    },
-    "previousButton": {
-      "classList": ["button"]
-    }
-  },
   "steps": [
     {
       "number": "1",

@@ -21,9 +21,10 @@ export default defineConfig({
   build: {
     minify: true,
     lib: {
-      entry: resolve(__dirname, '/src/handhold.js'),
+      entry: resolve(__dirname, '/src/handhold.mjs'),
       name: 'HandholdJS',
       fileName: `handhold`,
+      formats: ['umd'],
     },
   },
 });
