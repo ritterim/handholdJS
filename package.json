@@ -20,8 +20,10 @@
   "keywords": [
     "walthrough",
     "ui walkthrough",
+    "js walkthrough",
     "product tour",
-    "ui tour"
+    "ui tour",
+    "js tour"
   ],
   "browserslist": [
     "defaults",
