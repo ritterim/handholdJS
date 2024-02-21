@@ -21,7 +21,7 @@ jobs:
       npmjs_org_api_key: ${{ secrets.RITTERIM_NPMJS_PUBLISH_TOKEN }}
     with:
       allowed_branches: |
-        main
+        master
       npm_package_name: handholdJS
       run_tests: false
       npmjs_org_access_public: true
