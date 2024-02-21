@@ -28,5 +28,5 @@ jobs:
     with:
       always_increment_patch_version: true
       gh_app_id: ${{ vars.RIMDEV_NPM_RELEASES_APP_APPID }}
-      npm_package_name: handholdJS
+      npm_package_name: handholdjs
       run_tests: false
