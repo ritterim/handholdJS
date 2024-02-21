@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ritterim/handholdJS.git"
+    "url": "https://github.com/ritterim/handholdJS.git"
   },
   "author": "Ritter Insurance Marketing (https://rimdev.io)",
   "license": "MIT",
@@ -30,7 +30,7 @@
     "not IE 11",
     "maintained node versions"
   ],
-  "homepage": "https://rimdev.io/open-source/",
+  "homepage": "https://github.com/ritterim/handholdJS.git",
   "devDependencies": {
     "autoprefixer": "^10.4.17",
     "postcss": "^8.4.35",
