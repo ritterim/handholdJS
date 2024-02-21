@@ -22,7 +22,7 @@ jobs:
     with:
       allowed_branches: |
         master
-      npm_package_name: handholdJS
+      npm_package_name: handholdjs
       run_tests: false
       npmjs_org_access_public: true
       publish_to_npmjs_org: true
