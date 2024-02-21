@@ -20,5 +20,5 @@ jobs:
     #uses: ./.github/workflows/npm-packages-pr-build.yml
     with:
       always_increment_patch_version: true
-      npm_package_name: handholdJS
+      npm_package_name: handholdjs
       run_tests: false
