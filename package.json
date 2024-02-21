@@ -30,7 +30,7 @@
     "not IE 11",
     "maintained node versions"
   ],
-  "homepage": "https://github.com/ritterim/handholdJS#readme",
+  "homepage": "https://rimdev.io/open-source/",
   "devDependencies": {
     "autoprefixer": "^10.4.17",
     "postcss": "^8.4.35",
