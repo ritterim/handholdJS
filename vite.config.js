@@ -24,7 +24,7 @@ export default defineConfig({
       entry: resolve(__dirname, '/src/handhold.mjs'),
       name: 'HandholdJS',
       fileName: `handhold`,
-      formats: ['umd'],
+      formats: ['es', 'cjs'],
     },
   },
 });
