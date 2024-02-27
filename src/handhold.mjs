@@ -1,13 +1,13 @@
 import './sass/handhold.scss';
 
 export default class Handhold {
-  constructor() {
+  constructor(startElement) {
     this._active = false;
     this._config;
     this._currentStep = 1;
     this._currentStepElement;
     this._mappedSteps;
-    this._startBtn = document.querySelector('[data-start-handhold]');
+    this._startBtn = startElement || document.querySelector('[data-start-handhold]');
     this._stepElements;
     this._steps;
     this._listeners;
