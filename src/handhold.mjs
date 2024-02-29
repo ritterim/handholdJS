@@ -18,7 +18,6 @@ export default class Handhold {
 
     if (data.steps) {
       this._steps = data.steps;
-      this.mapSteps();
     }
     if (data.config) this._config = data.config;
 
@@ -342,6 +341,7 @@ export default class Handhold {
   }
 
   startHandhold() {
+    this.mapSteps();
     this._active = true;
 
     document.body.classList.add('handhold');
@@ -429,7 +429,7 @@ export default class Handhold {
     if (this._startBtn) {
       return this._startBtn.addEventListener('click', () => {
         if (this._active) return;
-        if (this._currentStepElement) this.startHandhold();
+        this.startHandhold();
       });
     }
 
