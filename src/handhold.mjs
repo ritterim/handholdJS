@@ -196,7 +196,7 @@ export default class Handhold {
     const modal = document.querySelector('.handhold-modal');
     const modalTitle = modal.querySelector('.handhold-modal-title');
     const modalContent = modal.querySelector('.handhold-modal-content');
-    const currentStepPos = this._currentStepElement.offsetTop;
+    const currentStepPos = this.getElementDimension(this._currentStepElement).top;
 
     if (this._currentStepElement) {
       const dimensions = this.getElementDimension(step.element);
