@@ -8,7 +8,6 @@ export default class Handhold {
     this._currentStepElement;
     this._mappedSteps;
     this._startBtn = startElement || document.querySelector('[data-start-handhold]');
-    this._stepElements;
     this._steps;
     this._listeners;
     this._root;
@@ -16,20 +15,12 @@ export default class Handhold {
 
   // Imports steps from JSON or JS Object
   setup(data) {
-    this.setStepElements();
 
     if (data.steps) {
       this._steps = data.steps;
       this.mapSteps();
     }
     if (data.config) this._config = data.config;
-
-    return;
-  }
-
-  setStepElements() {
-    const elements = Array.from(document.querySelectorAll('[data-step]'));
-    this._stepElements = elements.length ? elements : [];
 
     return;
   }
@@ -91,17 +82,12 @@ export default class Handhold {
 
   // Matches steps to the related element in the DOM,
   mapSteps() {
-    if (this._stepElements.length) {
-      this._mappedSteps = this._stepElements.map((el) => {
-        const matchingStep = this._steps.find((step) => {
-          return parseInt(step.number) === parseInt(el.dataset.step);
-        });
-        return {
-          ...matchingStep,
-          element: el,
-        };
-      });
-    }
+    this._mappedSteps = this._steps.map(step => {
+      return {
+        ...step,
+        element: document.getElementById(step.elementId)
+      }
+    })
 
     if (this._mappedSteps && this._mappedSteps.length) {
       this._currentStepElement = this._mappedSteps.find((step) => {
