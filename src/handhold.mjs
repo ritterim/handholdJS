@@ -130,11 +130,10 @@ export default class Handhold {
     const boundingBox = document.querySelector('.handhold-bounding-box');
     boundingBox.innerHTML = '';
     const dimensions = this.getElementDimension(this._currentStepElement);
-    const currentStepPos = this._currentStepElement.offsetTop;
     boundingBox.style = [
       `--hh-boundingbox-height: ${dimensions.height}px`,
       `--hh-boundingbox-width: ${dimensions.width}px`,
-      `--hh-boundingbox-top: ${currentStepPos}px`,
+      `--hh-boundingbox-top: ${dimensions.top}px`,
       `--hh-boundingbox-left: ${dimensions.left}px`,
     ].join(';');
 
