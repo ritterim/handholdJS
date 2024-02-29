@@ -1,7 +1,7 @@
 {
   "name": "@ritterim/handholdjs",
   "description": "A configurable JavaScript hand held walk-through for user interfaces.",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "main": "dist/handhold.mjs",
   "scripts": {
     "dev": "vite",
