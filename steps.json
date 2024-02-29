@@ -2,21 +2,25 @@
   "steps": [
     {
       "number": "1",
+      "elementId": "step-1",
       "title": "Your Daily Headlines",
       "content": "This is where all the latest news will appear."
     },
     {
       "number": "2",
+      "elementId": "step-2",
       "title": "Daily Graph",
       "content": "The daily graph will display relevant information."
     },
     {
       "number": "3",
+      "elementId": "step-3",
       "title": "Another Graph",
       "content": "This will show even more relevant information"
     },
     {
       "number": "4",
+      "elementId": "step-4",
       "title": "Mmmm... Pie",
       "content": "This will show even more relevant information"
     }
