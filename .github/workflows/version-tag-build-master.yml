@@ -15,13 +15,19 @@ on:
 jobs:
 
   version-tag-build:
-    uses: ritterim/public-github-actions/.github/workflows/npm-packages-release-on-tag.yml@v1.9.0
-    #uses: ./.github/workflows/npm-packages-release-on-tag.yml
+    uses: ritterim/public-github-actions/.github/workflows/npm-packages-release-on-tag-jfrog.yml@v1.16.5
+    #uses: ./.github/workflows/npm-packages-release-on-tag-jfrog.yml
     secrets:
       npmjs_org_api_key: ${{ secrets.RITTERIM_NPMJS_PUBLISH_TOKEN }}
     with:
       allowed_branches: |
         master
+      jfrog_artifactory_repository: "${{ vars.JFROG_NPM_PACKAGE_REPO_BASENAME }}-prod"
+      jfrog_audit_xray_watch_list: ${{ vars.JFROG_AUDIT_XRAY_WATCH_LIST }}
+      jfrog_build_basename: ${{ vars.JFROG_BUILD_BASENAME }}
+      jfrog_npm_feed_repo: ${{ vars.JFROG_ARTIFACTORY_VIRTUAL_REPO_NPM }}
+      jfrog_npm_package_repo_basename: ${{ vars.JFROG_NPM_PACKAGE_REPO_BASENAME }}
+      jfrog_oidc_provider_name: ${{ vars.JFROG_GHA_OIDC_PROVIDER_NAME }}
       npm_package_name: handholdjs
       run_tests: false
       npmjs_org_access_public: true
