@@ -22,6 +22,7 @@ jobs:
     with:
       allowed_branches: |
         master
+      jfrog_api_base_url: ${{ vars.JFROG_API_BASE_URL }}
       jfrog_artifactory_repository: "${{ vars.JFROG_NPM_PACKAGE_REPO_BASENAME }}-prod"
       jfrog_audit_xray_watch_list: ${{ vars.JFROG_AUDIT_XRAY_WATCH_LIST }}
       jfrog_build_basename: ${{ vars.JFROG_BUILD_BASENAME }}
